@@ -195,11 +195,11 @@ with col2:
         ax.plot(pd.date_range(start=selected_data.index[-1], periods=15, freq='W'), forecast, label='Forecast')
         ax.legend()
         st.pyplot(fig)
-    except np.linalg.LinAlgError:
-        st.error("The data is not suitable for the ARIMA model (e.g., insufficient data points, non-stationary data, etc.)")
     except Exception as e:
         st.error(f"Error in ARIMA model fitting: {e}") #the data is not suitable for the ARIMA model (e.g., insufficient data points, non-stationary data, etc.).
-
+    except np.linalg.LinAlgError:
+        st.error("The data is not suitable for the ARIMA model (e.g., insufficient data points, non-stationary data, etc.)")
+        
     # Actual vs Predicted Plot
     st.subheader("Actual vs Predicted Demand")
     fig, ax = plt.subplots()
